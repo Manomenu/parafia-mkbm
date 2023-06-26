@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using parafia_mbkm.data;
 
 namespace parafia_mbkm.Controllers
 {
@@ -17,6 +18,8 @@ namespace parafia_mbkm.Controllers
         {
             _logger = logger;
         }
+
+
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
