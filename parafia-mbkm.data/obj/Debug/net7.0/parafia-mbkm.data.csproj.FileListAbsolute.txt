@@ -12,3 +12,17 @@ D:\prog\parafia-mbkm\parafia-mbkm.data\obj\Debug\net7.0\refint\parafia-mbkm.data
 D:\prog\parafia-mbkm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.pdb
 D:\prog\parafia-mbkm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.genruntimeconfig.cache
 D:\prog\parafia-mbkm\parafia-mbkm.data\obj\Debug\net7.0\ref\parafia-mbkm.data.dll
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\bin\Debug\net7.0\parafia-mbkm.data.deps.json
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\bin\Debug\net7.0\parafia-mbkm.data.runtimeconfig.json
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\bin\Debug\net7.0\parafia-mbkm.data.dll
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\bin\Debug\net7.0\parafia-mbkm.data.pdb
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.csproj.AssemblyReference.cache
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.GeneratedMSBuildEditorConfig.editorconfig
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.AssemblyInfoInputs.cache
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.AssemblyInfo.cs
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.csproj.CoreCompileInputs.cache
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.dll
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\refint\parafia-mbkm.data.dll
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.pdb
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\parafia-mbkm.data.genruntimeconfig.cache
+D:\code\_projekty\parafia-mkbm\parafia-mkbm\parafia-mbkm.data\obj\Debug\net7.0\ref\parafia-mbkm.data.dll

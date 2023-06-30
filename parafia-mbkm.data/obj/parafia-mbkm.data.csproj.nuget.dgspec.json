@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\prog\\parafia-mbkm\\parafia-mbkm.data\\parafia-mbkm.data.csproj": {}
+    "D:\\code\\_projekty\\parafia-mkbm\\parafia-mkbm\\parafia-mbkm.data\\parafia-mbkm.data.csproj": {}
   },
   "projects": {
-    "D:\\prog\\parafia-mbkm\\parafia-mbkm.data\\parafia-mbkm.data.csproj": {
+    "D:\\code\\_projekty\\parafia-mkbm\\parafia-mkbm\\parafia-mbkm.data\\parafia-mbkm.data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\prog\\parafia-mbkm\\parafia-mbkm.data\\parafia-mbkm.data.csproj",
+        "projectUniqueName": "D:\\code\\_projekty\\parafia-mkbm\\parafia-mkbm\\parafia-mbkm.data\\parafia-mbkm.data.csproj",
         "projectName": "parafia-mbkm.data",
-        "projectPath": "D:\\prog\\parafia-mbkm\\parafia-mbkm.data\\parafia-mbkm.data.csproj",
-        "packagesPath": "C:\\Users\\Maniumek\\.nuget\\packages\\",
-        "outputPath": "D:\\prog\\parafia-mbkm\\parafia-mbkm.data\\obj\\",
+        "projectPath": "D:\\code\\_projekty\\parafia-mkbm\\parafia-mkbm\\parafia-mbkm.data\\parafia-mbkm.data.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\_projekty\\parafia-mkbm\\parafia-mkbm\\parafia-mbkm.data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Maniumek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400-preview.23274.1\\RuntimeIdentifierGraph.json"
         }
       }
     }
