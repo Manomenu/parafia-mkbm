@@ -3,6 +3,7 @@ using parafia_mbkm.data;
 using parafia_mbkm.data.Models;
 using parafia_mbkm.Services;
 using parafia_mbkm.ModelViews;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,9 +22,9 @@ namespace parafia_mbkm.Controllers
 
         // GET: api/<ArticleController>
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IEnumerable<Article>> GetAll()
         {
-            return Ok(new string[] { "value1", "value2" });
+            return await context.Articles.ToArrayAsync();
         }
 
         //GET api/<ArticleController>/5
