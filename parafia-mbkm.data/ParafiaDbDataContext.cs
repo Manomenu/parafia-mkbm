@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace parafia_mbkm.data.DataContexts
+namespace parafia_mbkm.data
 {
-    public class MovieActorDataContext : DbContext
+    public class ParafiaDbDataContext : DbContext
     {
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Actor> Actors { get; set; }
-        public MovieActorDataContext(DbContextOptions<MovieActorDataContext> options)
+        public DbSet<Article> Articles { get; set; }
+
+        public ParafiaDbDataContext(DbContextOptions<ParafiaDbDataContext> options)
             : base(options)
         {
         }
