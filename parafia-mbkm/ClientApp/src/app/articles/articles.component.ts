@@ -22,6 +22,7 @@ export class ArticlesComponent {
   }
 }
 
+
 interface Article {
   header: string;
   content: number;
