@@ -230,16 +230,27 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
-# From .NET Core 3.0 you can use the command: `dotnet new gitignore` to generate a customizable .gitignore file
-
 *.swp
 *.*~
 project.lock.json
 .DS_Store
 *.pyc
+nupkg/
 
 # Visual Studio Code
-.vscode
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+
+# Fleet
+.fleet/
+
+# Code Rush
+.cr/
 
 # User-specific files
 *.suo
@@ -258,6 +269,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
 msbuild.log
 msbuild.err
 msbuild.wrn
