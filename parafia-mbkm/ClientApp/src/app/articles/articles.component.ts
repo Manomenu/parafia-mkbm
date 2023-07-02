@@ -8,15 +8,15 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./articles.component.css']
 })
 
-
 export class ArticlesComponent {
   public articles: Article[] = [];
   addForm = this.fb.group({
     header: '',
     content: ''
   })
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private fb: FormBuilder) {
-    http.get<Article[]>(baseUrl + 'api/article').subscribe({
+
+  httpGetRequest() {
+    this.http.get<Article[]>(this.baseUrl + 'api/article').subscribe({
       next: (result) => {
         this.articles = result;
       },
@@ -25,14 +25,33 @@ export class ArticlesComponent {
       }
     });
   }
+
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private fb: FormBuilder) {
+    this.httpGetRequest();
+  }
   onSubmit(): void {
-    console.log('submitted form', this.addForm.value);
-     
+    this.http.post(
+      this.baseUrl + 'api/article',
+      new Article(
+        (this.addForm.value.header || '').toString(),
+        (this.addForm.value.content || '').toString())
+    ).subscribe({
+      next: (result) => {
+        console.log(result)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+    this.httpGetRequest();
   }
 }
 
-
-interface Article {
-  header: string;
-  content: number;
+export class Article {
+  public header: string;
+  public content: string;
+  constructor(header: string, content: string) {
+    this.header = header;
+    this.content = content;
+  }
 }
