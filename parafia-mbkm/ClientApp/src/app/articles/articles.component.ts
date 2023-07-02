@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-articles',
@@ -7,10 +8,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./articles.component.css']
 })
 
+
 export class ArticlesComponent {
   public articles: Article[] = [];
-
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  addForm = this.fb.group({
+    header: '',
+    content: ''
+  })
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private fb: FormBuilder) {
     http.get<Article[]>(baseUrl + 'api/article').subscribe({
       next: (result) => {
         this.articles = result;
@@ -19,6 +24,10 @@ export class ArticlesComponent {
         console.error(err);
       }
     });
+  }
+  onSubmit(): void {
+    console.log('submitted form', this.addForm.value);
+     
   }
 }
 
