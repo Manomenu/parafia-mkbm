@@ -11,6 +11,7 @@ namespace parafia_mbkm.data
     public class ParafiaDbDataContext : DbContext
     {
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
         public ParafiaDbDataContext(DbContextOptions<ParafiaDbDataContext> options)
             : base(options)

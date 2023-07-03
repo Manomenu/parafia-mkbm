@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace parafia_mbkm.data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class forAnnouncement : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

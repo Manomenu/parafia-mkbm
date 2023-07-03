@@ -1,0 +1,32 @@
+.announcements button {
+  background-color: #ffffff; 
+  border: 1px solid black; 
+  color: black;
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 50%;
+  display: block;
+}
+
+.announcements button:not(:last-child) {
+  border-bottom: none;
+}
+
+.announcements button:hover {
+  background-color: lightgray;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+button {
+  margin: 0 auto;
+}
+
+p {
+  margin: 0;
+}
+

@@ -11,8 +11,8 @@ using parafia_mbkm.data;
 namespace parafia_mbkm.data.Migrations
 {
     [DbContext(typeof(ParafiaDbDataContext))]
-    [Migration("20230629171213_Initial")]
-    partial class Initial
+    [Migration("20230703182914_forAnnouncement")]
+    partial class forAnnouncement
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
