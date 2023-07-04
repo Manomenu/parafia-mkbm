@@ -20,7 +20,7 @@ namespace parafia_mbkm.Services
             return announcement.Id;
         }
 
-        public static async Task<Announcement?> GetArticleByIdAsync(int id, ParafiaDbDataContext context)
+        public static async Task<Announcement?> GetAnnouncementByIdAsync(int id, ParafiaDbDataContext context)
         {
             return await context.Announcements.FindAsync(id);
         }
