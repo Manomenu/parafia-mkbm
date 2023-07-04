@@ -1,61 +1,10 @@
 <p *ngIf="!announcements?.length"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="announcements.length">
-    <thead>
-        <tr>
-            <th>Header</th>
-            <th>Content</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let announcement of announcements">
-            <td>{{ announcement.header }}</td>
-            <td>{{ announcement.content }}</td>
-        </tr>
-    </tbody>
-</table>
-
 <div class="announcements">
-    <button>
+    <button *ngFor="let announcement of announcements">
         <div class="title">
-            <p>X Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>IX Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>VII Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>VI Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>V Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>IV Niedziela Zwykła</p>
-            <p>01.01.2023</p>
-        </div>
-    </button>
-    <button>
-        <div class="title">
-            <p>III Niedziela Zwykła</p>
-            <p>01.01.2023</p>
+            <p>{{ announcement.title }}</p>
+            <p>{{ announcement.date }}</p>
         </div>
     </button>
 </div>

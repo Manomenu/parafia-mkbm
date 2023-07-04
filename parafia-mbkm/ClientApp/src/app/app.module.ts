@@ -31,7 +31,7 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'api/article', component: ArticlesComponent },
-      { path: 'announcements', component: AnnouncementsComponent }
+      { path: 'api/announcement', component: AnnouncementsComponent }
     ])
   ],
   providers: [],

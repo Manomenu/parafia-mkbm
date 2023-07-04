@@ -10,9 +10,10 @@ export class AnnouncementsComponent {
   public announcements: Announcement[] = [];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Announcement[]>(baseUrl + 'announcements').subscribe({
+    http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
       next: (result) => {
         this.announcements = result;
+        console.log(result);
       }, error: (err) => {
         console.error(err);
       }
