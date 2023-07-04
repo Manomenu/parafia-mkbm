@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
+import { SingleAnnouncementComponent } from './single-announcement/single-announcement.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
     CounterComponent,
     FetchDataComponent,
     ArticlesComponent,
-    AnnouncementsComponent
+    AnnouncementsComponent,
+    SingleAnnouncementComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +33,8 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'api/article', component: ArticlesComponent },
-      { path: 'api/announcement', component: AnnouncementsComponent }
+      { path: 'api/announcement', component: AnnouncementsComponent },
+      { path: 'api/single-announcement', component: SingleAnnouncementComponent }
     ])
   ],
   providers: [],

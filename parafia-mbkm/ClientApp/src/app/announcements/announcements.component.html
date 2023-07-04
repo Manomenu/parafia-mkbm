@@ -1,7 +1,8 @@
 <p *ngIf="!announcements?.length"><em>Loading...</em></p>
 
+<!-- sprawdzdic stan buttonow z listy czy klikniety -->
 <div class="announcements">
-    <button *ngFor="let announcement of announcements">
+    <button *ngFor="let announcement of announcements" onclick="onSelect({{ announcement }})">
         <div class="title">
             <p>{{ announcement.title }}</p>
             <p>{{ announcement.date }}</p>

@@ -8,7 +8,8 @@ const PROXY_CONFIG = [
     context: [
       "/weatherforecast",
       "/api/article",
-      "/api/announcement"
+      "/api/announcement",
+      "/api/single-announcement"
    ],
     target: target,
     secure: false,
