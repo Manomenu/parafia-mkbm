@@ -36,14 +36,14 @@ export class ArticlesComponent {
         (this.addForm.value.header || '').toString(),
         (this.addForm.value.content || '').toString())
     ).subscribe({
-      next: (result) => {
-        console.log(result)
+      next: () => {
+        this.httpGetRequest();
       },
       error: (err) => {
         console.log(err);
       }
     });
-    this.httpGetRequest();
+    
   }
 }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using parafia_mbkm.data;
@@ -11,9 +12,11 @@ using parafia_mbkm.data;
 namespace parafia_mbkm.data.Migrations
 {
     [DbContext(typeof(ParafiaDbDataContext))]
-    partial class ParafiaDbDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230703191055_Contacts")]
+    partial class Contacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,14 @@
+<h3>Dane Kontaktowe</h3>
+
+<p *ngIf="!contacts.length"><em>Loading...</em></p>
+
+<ul>
+  <li *ngFor="let contact of contacts">
+    <p>{{ contact.contactTitle }}</p>
+    <ul>
+      <li *ngFor="let line of contact.contactLines">
+        <span>{{ line.category }} {{ line.value }}</span>
+      </li>
+    </ul>
+  </li>
+</ul>
