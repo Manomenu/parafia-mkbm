@@ -14,14 +14,14 @@ namespace parafia_mbkm.data.Models
         [Required]
         public string Title { get; set; }
         [Required]
-        public string Date { get; set; }
+        public DateOnly Date { get; set; }
         [Required]
         public string Content { get; set; }
 
         public Announcement()
         {
             Title = "";
-            Date = "";
+            Date = new DateOnly();
             Content = "";
         }
     }

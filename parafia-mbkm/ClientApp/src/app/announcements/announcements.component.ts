@@ -11,7 +11,6 @@ export class AnnouncementsComponent {
   public announcements: Announcement[] = [];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private route: ActivatedRoute, private router: Router) {
-    //this.route.params.subscribe(params => console.log(params));
     http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
       next: (result) => {
         this.announcements = result;
