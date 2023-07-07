@@ -11,7 +11,7 @@ export class AnnouncementsComponent {
   public announcements: Announcement[] = [];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe(params => console.log(params));
+    //this.route.params.subscribe(params => console.log(params));
     http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
       next: (result) => {
         this.announcements = result;
@@ -22,7 +22,7 @@ export class AnnouncementsComponent {
     });
   }
 
-  onClick(title: string, date: string, id: number) {
+  onClick(title: string, date: Date, id: number) {
     this.router.navigate(['api/announcement', title, date, id]);
   } 
 }
@@ -31,6 +31,6 @@ export class AnnouncementsComponent {
 interface Announcement {
   id: number;
   title: string;
-  date: string;
+  date: Date;
   content: string;
 }

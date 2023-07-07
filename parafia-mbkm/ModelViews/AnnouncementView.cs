@@ -5,13 +5,13 @@ namespace parafia_mbkm.ModelViews
     public class AnnouncementView
     {
         public string Title { get; set; }
-        public string Date { get; set; }
+        public DateOnly Date { get; set; }
         public string Content { get; set; }
 
         public AnnouncementView()
         {
             Title = "";
-            Date = "";
+            Date = new DateOnly();
             Content = "";
         }
     }
