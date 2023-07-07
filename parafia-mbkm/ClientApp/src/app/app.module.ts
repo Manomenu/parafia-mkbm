@@ -34,10 +34,10 @@ import { SingleAnnouncementComponent } from './single-announcement/single-announ
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'api/article', component: ArticlesComponent },
       { path: 'api/announcement', component: AnnouncementsComponent },
-      { path: 'api/single-announcement', component: SingleAnnouncementComponent }
+      { path: 'api/announcement/:title/:date/:id', component: SingleAnnouncementComponent },
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }
