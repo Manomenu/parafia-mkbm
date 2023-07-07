@@ -7,6 +7,6 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class SingleAnnouncementComponent {
   constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe( params => console.log(params));
+    this.route.params.subscribe( params => console.log("params : ", params));
   }
 }

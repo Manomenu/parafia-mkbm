@@ -10,8 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AnnouncementsComponent {
   public announcements: Announcement[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private route: ActivatedRoute, private router: Router) {
-    http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe( params => console.log("params : ", params));
+      http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
       next: (result) => {
         this.announcements = result;
         console.log(result);
@@ -22,7 +23,17 @@ export class AnnouncementsComponent {
   }
 
   onClick(title: string, date: Date, id: number) {
-    this.router.navigate(['api/announcement', title, date, id]);
+    this.http.get<Announcement[]>(this.baseUrl + 'api/announcement/' + id).subscribe({
+      next: (result) => {
+        if (result == null) {
+          this.router.navigate([this.baseUrl]);
+        } else {
+          this.router.navigate(['api/announcement', title, date, id]);
+         }
+      }, error: (err) => {
+        console.error(err);
+      }
+    });
   } 
 }
 

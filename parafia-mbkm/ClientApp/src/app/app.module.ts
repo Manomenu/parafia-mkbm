@@ -13,6 +13,8 @@ import { ArticlesComponent } from './articles/articles.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { SingleAnnouncementComponent } from './single-announcement/single-announcement.component';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,10 +36,10 @@ import { SingleAnnouncementComponent } from './single-announcement/single-announ
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'api/article', component: ArticlesComponent },
       { path: 'api/announcement', component: AnnouncementsComponent },
-      { path: 'api/announcement/:title/:date/:id', component: SingleAnnouncementComponent },
+      { path: 'api/announcement/:title/:date/:id', component: SingleAnnouncementComponent }
     ])
   ],
-  providers: [],
+  providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy} ],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }
