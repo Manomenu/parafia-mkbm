@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { AnnouncementsComponent } from '../announcements/announcements.component';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -19,6 +18,7 @@ export class SingleAnnouncementComponent {
       http.get<Announcement>(baseUrl + 'api/announcement/' + this.id).subscribe({
         next: (result) => {
           this.announcement = result;
+          this.announcement.content;
         }, error: (err) => {
           console.error(err);
         }

@@ -1,2 +1,4 @@
 <input type="button" (click)="Return()" value="<-" />
-<h1>{{ (announcement | async)?.title }}</h1>
+<h1>{{ announcement?.title }}</h1>
+<h5>{{ announcement?.date }}</h5>
+<p>{{ announcement?.content }}</p>
