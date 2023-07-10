@@ -36,7 +36,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'api/article', component: ArticlesComponent },
       { path: 'api/announcement', component: AnnouncementsComponent },
-      { path: 'api/announcement/:title/:date/:id', component: SingleAnnouncementComponent }
+      { path: 'api/announcement/:title/:date/:id', component: SingleAnnouncementComponent },
+      { path: '**', component: HomeComponent } // make it 404 page not found
     ])
   ],
   providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy} ],

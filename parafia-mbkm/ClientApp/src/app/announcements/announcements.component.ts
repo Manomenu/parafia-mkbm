@@ -9,9 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AnnouncementsComponent {
   public announcements: Announcement[] = [];
+  public idRef: number = -1;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe( params => console.log("params : ", params));
+    this.route.params.subscribe(params => console.log("params : ", params));
       http.get<Announcement[]>(baseUrl + 'api/announcement').subscribe({
       next: (result) => {
         this.announcements = result;
@@ -22,18 +23,8 @@ export class AnnouncementsComponent {
     });
   }
 
-  onClick(title: string, date: Date, id: number) {
-    this.http.get<Announcement[]>(this.baseUrl + 'api/announcement/' + id).subscribe({
-      next: (result) => {
-        if (result == null) {
-          this.router.navigate([this.baseUrl]);
-        } else {
-          this.router.navigate(['api/announcement', title, date, id]);
-         }
-      }, error: (err) => {
-        console.error(err);
-      }
-    });
+  onClick(titleDb: string, dateDb: Date, idDb: number) {
+    this.router.navigate(['api/announcement', titleDb, dateDb, idDb]);
   } 
 }
 
