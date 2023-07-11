@@ -14,7 +14,8 @@ namespace parafia_mbkm.Services
                 ContactLines = contactModel.ContactLines.Select(cl => new ContactLine
                 {
                     Category = cl.Category, 
-                    Value = cl.Value
+                    Value = cl.Value,
+                    Icon = cl.Icon,
                 }).ToList()
             };
             await context.Contacts.AddAsync(contact);

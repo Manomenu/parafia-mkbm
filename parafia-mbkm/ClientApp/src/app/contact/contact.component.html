@@ -7,7 +7,7 @@
     <p>{{ contact.contactTitle }}</p>
     <ul>
       <li *ngFor="let line of contact.contactLines">
-        <span>{{ line.category }} {{ line.value }}</span>
+        <span><img [src]="getContactIconSource(line.icon)" width="50px"/> {{ line.category }} {{ line.value }}</span>
       </li>
     </ul>
   </li>

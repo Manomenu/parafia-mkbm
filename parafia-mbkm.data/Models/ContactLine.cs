@@ -15,11 +15,13 @@ namespace parafia_mbkm.data.Models
         public string Category { get; set; }
         [Required]
         public string Value { get; set; }
-
+        [Required]
+        public string Icon { get; set; }
         public ContactLine()
         {
             Category = "";
             Value = "";
+            Icon = "";
         }
     }
 }

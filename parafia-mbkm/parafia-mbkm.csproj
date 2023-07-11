@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -28,7 +29,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\assets\contact-images\mail.png" />
+    <None Remove="ClientApp\src\assets\contact-images\money.png" />
+    <None Remove="ClientApp\src\assets\contact-images\person.png" />
+    <None Remove="ClientApp\src\assets\contact-images\phone.png" />
+    <None Remove="ClientApp\src\assets\contact-images\place.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\parafia-mbkm.data\parafia-mbkm.data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\services\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ClientApp\src\assets\contact-images\mail.png" />
+    <Resource Include="ClientApp\src\assets\contact-images\money.png" />
+    <Resource Include="ClientApp\src\assets\contact-images\person.png" />
+    <Resource Include="ClientApp\src\assets\contact-images\phone.png" />
+    <Resource Include="ClientApp\src\assets\contact-images\place.png" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

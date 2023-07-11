@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "parafia-mbkm", "parafia-mbkm\parafia-mbkm.csproj", "{9AC96AD5-78B6-4D1C-BCFD-591F39932AD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "parafia-mbkm.data", "parafia-mbkm.data\parafia-mbkm.data.csproj", "{83ECD8F5-FED1-4BF7-9CE2-32155646CE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "parafia-mbkm.data", "parafia-mbkm.data\parafia-mbkm.data.csproj", "{83ECD8F5-FED1-4BF7-9CE2-32155646CE03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

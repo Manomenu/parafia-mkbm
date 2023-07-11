@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using parafia_mbkm.data;
@@ -11,9 +12,11 @@ using parafia_mbkm.data;
 namespace parafia_mbkm.data.Migrations
 {
     [DbContext(typeof(ParafiaDbDataContext))]
-    partial class ParafiaDbDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230706163909_contact-icon")]
+    partial class contacticon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +78,9 @@ namespace parafia_mbkm.data.Migrations
                     b.Property<int?>("ContactId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Icon")
+                    b.Property<byte[]>("Icon")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Value")
                         .IsRequired()

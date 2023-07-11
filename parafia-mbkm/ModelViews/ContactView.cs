@@ -8,11 +8,13 @@ namespace parafia_mbkm.ModelViews
         {
             public string Category { get; set; }
             public string Value { get; set; }
+            public string Icon { get; set; }
 
             public ContactLineView() 
             {
                 Category = "";
                 Value = "";
+                Icon = "";
             }
         }
 
