@@ -1,6 +1,3 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
 /dist
 /dist-server
 /tmp
@@ -38,3 +35,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+.angular
+*/.angular
+.vs/*
+*/.angular/*

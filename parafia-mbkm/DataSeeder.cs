@@ -12,9 +12,11 @@ namespace parafia_mbkm
             using var context = scope.ServiceProvider.GetRequiredService<ParafiaDbDataContext>();
             context.Database.EnsureCreated();
             AddMovies(context);
+            AddContacts(context);
+
         }
 
-        public static void AddMovies(ParafiaDbDataContext context)
+        private static void AddMovies(ParafiaDbDataContext context)
         {
             if (context.Articles.Count() >= 10)
                 context.Articles.Remove(context.Articles.First());
@@ -32,6 +34,30 @@ namespace parafia_mbkm
                 Content = content[rnd.Next(0, 3)]
             });
 
+            context.SaveChanges();
+        }
+        private static void AddContacts(ParafiaDbDataContext context)
+        {
+            if (context.Contacts.FirstOrDefault() != null) return;
+
+            context.Contacts.Add(new Contact
+            {
+                ContactTitle = "Proboszcz",
+                ContactLines = new List<ContactLine>
+                {
+                    new ContactLine { Category = "Numer telefonu", Value = "333333222", Icon = "phone" },
+                    new ContactLine { Category = "Email", Value = "abba@wp.pl", Icon = "mail" }
+                }
+            });
+            context.Contacts.Add(new Contact
+            {
+                ContactTitle = "Organista",
+                ContactLines = new List<ContactLine>
+                {
+                    new ContactLine { Category = "Numer telefonu", Value = "543111222", Icon = "phone" },
+                    new ContactLine { Category = "Email", Value = "haha@onet.pl", Icon = "mail" }
+                }
+            });
             context.SaveChanges();
         }
     }

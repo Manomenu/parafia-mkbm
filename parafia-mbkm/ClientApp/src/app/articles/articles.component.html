@@ -1,3 +1,18 @@
+<form class="form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <label class="label">header</label>
+        <input type="text" class="input" formControlName="header" />
+    </div>
+    <div class="field">
+        <label class="label">content</label>
+        <input type="text" class="input" formControlName="content" />
+    </div>
+
+    <div>
+        <button type="submit" class="button">Add</button>
+    </div>
+</form>
+
 <p *ngIf="!articles?.length"><em>Loading...</em></p>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="articles.length">
