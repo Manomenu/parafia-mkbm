@@ -1,38 +1,66 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { GetContactIconService } from '../services/get-contact-icon.service';
+import { Component, OnInit } from '@angular/core';
+import { contact } from './models/contact';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ContactDbService } from './services/contact-db.service';
+import { ContactProcessingService } from './services/contact-processing.service';
 
 @Component({
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   public contacts: contact[] = [];
+  public contactForm!: FormGroup;
 
-  httpGetRequest() {
-    this.http.get<contact[]>(this.baseUrl + 'api/contact').subscribe({
+  constructor(
+    private contactProcessingService: ContactProcessingService,
+    private fb: FormBuilder,
+    private contactDbService: ContactDbService
+  ) {
+    this.contactForm = fb.group({
+      contactTitle: [''],
+      contactLines: fb.array([]),
+    });
+  }
+
+  ngOnInit(): void {
+    this.contactDbService.getContacts().subscribe({
       next: (result) => {
         this.contacts = result;
       },
       error: (err) => {
         console.error(err);
-      }
+      },
     });
   }
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-    private sanitizer: DomSanitizer, private contactService: GetContactIconService) {
-    this.httpGetRequest();
+  ///<forms functions>
+  async saveContactForm(): Promise<void> {
+    await this.contactDbService.addContact(
+      this.contactProcessingService.buildContactData(this.contactForm)
+    );
   }
+
+  get contactLinesForms(): FormArray {
+    return this.contactForm.get('contactLines') as FormArray;
+  }
+
+  addContactLineFormGroup(): void {
+    this.contactLinesForms.push(
+      this.fb.group({
+        icon: ['will be dropdown field'],
+        category: [''],
+        value: [''],
+      })
+    );
+  }
+
+  removeContactLineFormGroup(index: number): void {
+    this.contactLinesForms.removeAt(index);
+  }
+  ///</forms functions>
 
   getContactIconSource(icon: string) {
-    return this.contactService.getContactIconSource(icon);
+    return 'assets/contact-images/' + icon + '.png';
   }
 }
-
-interface contact {
-  contactTitle: string;
-  contactLines: { category: string, value: string, icon: string }[];
-}
-

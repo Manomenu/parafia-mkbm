@@ -1,5 +1,51 @@
 <h3>Dane Kontaktowe</h3>
 
+<div>
+  <form [formGroup]="contactForm" (ngSubmit)="saveContactForm()">
+    <div>
+      <label for="contactTitle">Grupa kontaktowa</label>
+      <input type="text" id="contactTitle" formControlName="contactTitle" />
+    </div>
+    <div formArrayName="contactLines">
+      <div>
+        <button type="button" (click)="addContactLineFormGroup()">
+          Dodaj linię danych
+        </button>
+      </div>
+      <ng-container
+        *ngFor="let contactLine of contactLinesForms.controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div>
+            <label [for]="'icon' + i">Ikona</label>
+            <input type="text" [id]="'icon' + i" formControlName="icon" />
+          </div>
+          <div>
+            <label [for]="'category' + i">Kategoria</label>
+            <input
+              type="text"
+              [id]="'category' + i"
+              formControlName="category"
+            />
+          </div>
+          <div>
+            <label [for]="'value' + i">Wartość</label>
+            <input type="text" [id]="'value' + i" formControlName="value" />
+          </div>
+          <div>
+            <button type="button" (click)="removeContactLineFormGroup(i)">
+              Usuń
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div>
+      <button type="submit">Zatwierdź</button>
+    </div>
+  </form>
+</div>
+
 <p *ngIf="!contacts.length"><em>Loading...</em></p>
 
 <ul>
@@ -7,7 +53,10 @@
     <p>{{ contact.contactTitle }}</p>
     <ul>
       <li *ngFor="let line of contact.contactLines">
-        <span><img [src]="getContactIconSource(line.icon)" width="50px"/> {{ line.category }} {{ line.value }}</span>
+        <span
+          ><img [src]="getContactIconSource(line.icon)" width="50px" />
+          {{ line.category }} {{ line.value }}</span
+        >
       </li>
     </ul>
   </li>
