@@ -18,7 +18,24 @@
         <div [formGroupName]="i">
           <div>
             <label [for]="'icon' + i">Ikona</label>
-            <input type="text" [id]="'icon' + i" formControlName="icon" />
+            <ng-select [id]="'icon' + i" formControlName="icon">
+              <ng-option [value]="-1" *ngIf="false"></ng-option>
+              <ng-option
+                *ngFor="let type of contactIconTypes"
+                [value]="type.value"
+              >
+                <img [src]="getContactIconSource(type.value)" width="50px" />
+              </ng-option>
+            </ng-select>
+            <!-- <select [id]="'icon' + i" formControlName="icon">
+              <option value="-1"></option>
+              <option
+                *ngFor="let option of contactIconTypes"
+                [value]="option.value"
+              >
+                <img [src]="getContactIconSource(option.value)" width="50px" />
+              </option>
+            </select> -->
           </div>
           <div>
             <label [for]="'category' + i">Kategoria</label>
@@ -46,18 +63,22 @@
   </form>
 </div>
 
-<p *ngIf="!contacts.length"><em>Loading...</em></p>
+<ng-container *ngIf="contacts$ | async as contacts; else loading">
+  <ul>
+    <li *ngFor="let contact of contacts">
+      <p>{{ contact.contactTitle }}</p>
+      <ul>
+        <li *ngFor="let line of contact.contactLines">
+          <span
+            ><img [src]="getContactIconSource(line.icon)" width="50px" />
+            {{ line.category }} {{ line.value }}</span
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</ng-container>
 
-<ul>
-  <li *ngFor="let contact of contacts">
-    <p>{{ contact.contactTitle }}</p>
-    <ul>
-      <li *ngFor="let line of contact.contactLines">
-        <span
-          ><img [src]="getContactIconSource(line.icon)" width="50px" />
-          {{ line.category }} {{ line.value }}</span
-        >
-      </li>
-    </ul>
-  </li>
-</ul>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

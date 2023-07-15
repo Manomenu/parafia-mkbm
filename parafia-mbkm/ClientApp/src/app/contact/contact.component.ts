@@ -3,14 +3,17 @@ import { contact } from './models/contact';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ContactDbService } from './services/contact-db.service';
 import { ContactProcessingService } from './services/contact-processing.service';
+import { contactIconTypes } from './data/contact-icon-types';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit {
-  public contacts: contact[] = [];
+  public contacts$!: Observable<contact[]>;
   public contactForm!: FormGroup;
+  public contactIconTypes!: { value: string }[];
 
   constructor(
     private contactProcessingService: ContactProcessingService,
@@ -24,21 +27,24 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contactDbService.getContacts().subscribe({
-      next: (result) => {
-        this.contacts = result;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    this.contactIconTypes = contactIconTypes;
+    this.contacts$ = this.contactDbService.getContacts();
   }
 
   ///<forms functions>
   async saveContactForm(): Promise<void> {
-    await this.contactDbService.addContact(
-      this.contactProcessingService.buildContactData(this.contactForm)
-    );
+    await this.contactDbService
+      .addContact(
+        this.contactProcessingService.buildContactData(this.contactForm)
+      )
+      .subscribe({
+        next: () => {
+          this.contacts$ = this.contactDbService.getContacts();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   get contactLinesForms(): FormArray {
@@ -48,7 +54,7 @@ export class ContactComponent implements OnInit {
   addContactLineFormGroup(): void {
     this.contactLinesForms.push(
       this.fb.group({
-        icon: ['will be dropdown field'],
+        icon: ['click here to choose an icon'],
         category: [''],
         value: [''],
       })

@@ -8,6 +8,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ContactComponent } from './contact/contact.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ContactComponent } from './contact/contact.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'api/article', component: ArticlesComponent },

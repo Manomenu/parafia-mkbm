@@ -7,10 +7,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ContactProcessingService {
   buildContactData(contactForm: FormGroup): contact {
-    return {
-      contactTitle: contactForm.value.contactTitle,
-      contactLines: [],
-    };
-    //todo zrobic tutaj parsowanie contactLines
+    return contactForm.value;
+    // akurat w tym formularzu .value zwraca dokładnie taki format jak trzeba to nic tu sie nie dzieje
   }
 }
