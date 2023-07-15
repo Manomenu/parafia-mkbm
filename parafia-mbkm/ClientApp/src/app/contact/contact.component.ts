@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { contact } from './models/contact';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactDbService } from './services/contact-db.service';
 import { ContactProcessingService } from './services/contact-processing.service';
 import { contactIconTypes } from './data/contact-icon-types';
 import { Observable } from 'rxjs';
+import { ContactValidatorService } from './validators/contact-validator.service';
 
 @Component({
   templateUrl: './contact.component.html',
@@ -18,10 +19,11 @@ export class ContactComponent implements OnInit {
   constructor(
     private contactProcessingService: ContactProcessingService,
     private fb: FormBuilder,
-    private contactDbService: ContactDbService
+    private contactDbService: ContactDbService,
+    private contactValidator: ContactValidatorService
   ) {
     this.contactForm = fb.group({
-      contactTitle: [''],
+      contactTitle: ['', Validators.required],
       contactLines: fb.array([]),
     });
   }
@@ -33,6 +35,10 @@ export class ContactComponent implements OnInit {
 
   ///<forms functions>
   async saveContactForm(): Promise<void> {
+    if (!this.contactForm.valid) {
+      alert('Invalid form!');
+      return;
+    }
     await this.contactDbService
       .addContact(
         this.contactProcessingService.buildContactData(this.contactForm)
@@ -54,7 +60,13 @@ export class ContactComponent implements OnInit {
   addContactLineFormGroup(): void {
     this.contactLinesForms.push(
       this.fb.group({
-        icon: ['click here to choose an icon'],
+        icon: [
+          '(click here)',
+          Validators.compose([
+            this.contactValidator.iconValidator(),
+            Validators.required,
+          ]),
+        ],
         category: [''],
         value: [''],
       })

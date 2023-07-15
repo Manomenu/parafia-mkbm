@@ -18,7 +18,7 @@
         <div [formGroupName]="i">
           <div>
             <label [for]="'icon' + i">Ikona</label>
-            <ng-select [id]="'icon' + i" formControlName="icon">
+            <ng-select [id]="'icon' + i" formControlName="icon" [clearable]="false">
               <ng-option [value]="-1" *ngIf="false"></ng-option>
               <ng-option
                 *ngFor="let type of contactIconTypes"

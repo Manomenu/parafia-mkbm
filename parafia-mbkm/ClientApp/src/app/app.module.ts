@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ContactComponent } from './contact/contact.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
       { path: 'api/contact', component: ContactComponent },
     ]),
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
