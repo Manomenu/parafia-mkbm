@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\parafia-mbkm.data\parafia-mbkm.data.csproj" />
+    <ProjectReference Include="..\parafia-mbkm.test\parafia-mbkm.test.csproj" />
   </ItemGroup>
 
   <ItemGroup>
