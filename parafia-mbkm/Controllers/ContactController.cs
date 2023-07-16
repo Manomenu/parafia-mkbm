@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using parafia_mbkm.data;
-using Microsoft.EntityFrameworkCore;
 using parafia_mbkm.data.Models;
 using parafia_mbkm.ModelViews;
-using parafia_mbkm.Services;
+using parafia_mbkm.Services.IServices;
 
 namespace parafia_mbkm.Controllers
 {
@@ -11,25 +9,24 @@ namespace parafia_mbkm.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private readonly ParafiaDbDataContext context;
-        public ContactController(ParafiaDbDataContext context)
+        private readonly IContactService contactService;
+        public ContactController(IContactService contactService)
         {
-            this.context = context;
+            this.contactService = contactService;
         }
 
         // GET: api/[controller]
         [HttpGet]
-        public async Task<IEnumerable<Contact>> GetAll()
+        public async Task<IEnumerable<Contact>> GetAllContacts()
         {
-            var x = await context.Contacts.Include(c => c.ContactLines).ToArrayAsync();
-            return x;
+            return await contactService.GetAllContactsAsync();
         }
 
         //GET api/[controller]/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContactById([FromRoute] int id)
         {
-            Contact? contact = await ContactService.GetContactByIdAsync(id, context);
+            Contact? contact = await contactService.GetContactByIdAsync(id);
             if (contact == null)
                 return NotFound();
             return Ok(contact);
@@ -39,7 +36,7 @@ namespace parafia_mbkm.Controllers
         [HttpPost]
         public async Task<IActionResult> AddContact([FromBody] ContactView contact)
         {
-            int contactId = await ContactService.AddContactAsync(contact, context);
+            int contactId = await contactService.AddContactAsync(contact);
             return CreatedAtAction(nameof(GetContactById), "contact", new
             {
                 Id = contactId,

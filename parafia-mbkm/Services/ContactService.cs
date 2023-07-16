@@ -1,12 +1,21 @@
 ﻿using parafia_mbkm.data.Models;
 using parafia_mbkm.data;
 using parafia_mbkm.ModelViews;
+using parafia_mbkm.Services.IServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace parafia_mbkm.Services
 {
-    public static class ContactService
+    public class ContactService : IContactService
     {
-        public static async Task<int> AddContactAsync(ContactView contactModel, ParafiaDbDataContext context)
+        private readonly ParafiaDbDataContext _dbContext;
+
+        public ContactService(ParafiaDbDataContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public async Task<int> AddContactAsync(ContactView contactModel)
         {
             Contact contact = new Contact
             {
@@ -18,15 +27,20 @@ namespace parafia_mbkm.Services
                     Icon = cl.Icon,
                 }).ToList()
             };
-            await context.Contacts.AddAsync(contact);
-            await context.SaveChangesAsync();
+            await _dbContext.Contacts.AddAsync(contact);
+            await _dbContext.SaveChangesAsync();
 
             return contact.Id;
         }
 
-        public static async Task<Contact?> GetContactByIdAsync(int id, ParafiaDbDataContext context)
+        public async Task<Contact?> GetContactByIdAsync(int id)
         {
-            return await context.Contacts.FindAsync(id);
+            return await _dbContext.Contacts.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Contact>> GetAllContactsAsync()
+        {
+            return await _dbContext.Contacts.Include(c => c.ContactLines).ToArrayAsync();
         }
     }
 }

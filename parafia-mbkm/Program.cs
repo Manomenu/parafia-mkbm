@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using parafia_mbkm;
 using parafia_mbkm.data;
+using parafia_mbkm.Services;
+using parafia_mbkm.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<ParafiaDbDataContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("ParafiaDb"),
     b => b.MigrationsAssembly("parafia-mbkm.data"))
     );
+
+builder.Services.AddScoped<IContactService, ContactService>();
 
 var app = builder.Build();
 
