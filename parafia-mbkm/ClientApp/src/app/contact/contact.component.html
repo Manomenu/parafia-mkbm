@@ -1,14 +1,84 @@
 <h3>Dane Kontaktowe</h3>
 
-<p *ngIf="!contacts.length"><em>Loading...</em></p>
+<div>
+  <form [formGroup]="contactForm" (ngSubmit)="saveContactForm()">
+    <div>
+      <label for="contactTitle">Grupa kontaktowa</label>
+      <input type="text" id="contactTitle" formControlName="contactTitle" />
+    </div>
+    <div formArrayName="contactLines">
+      <div>
+        <button type="button" (click)="addContactLineFormGroup()">
+          Dodaj linię danych
+        </button>
+      </div>
+      <ng-container
+        *ngFor="let contactLine of contactLinesForms.controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div>
+            <label [for]="'icon' + i">Ikona</label>
+            <ng-select [id]="'icon' + i" formControlName="icon" [clearable]="false">
+              <ng-option [value]="-1" *ngIf="false"></ng-option>
+              <ng-option
+                *ngFor="let type of contactIconTypes"
+                [value]="type.value"
+              >
+                <img [src]="getContactIconSource(type.value)" width="50px" />
+              </ng-option>
+            </ng-select>
+            <!-- <select [id]="'icon' + i" formControlName="icon">
+              <option value="-1"></option>
+              <option
+                *ngFor="let option of contactIconTypes"
+                [value]="option.value"
+              >
+                <img [src]="getContactIconSource(option.value)" width="50px" />
+              </option>
+            </select> -->
+          </div>
+          <div>
+            <label [for]="'category' + i">Kategoria</label>
+            <input
+              type="text"
+              [id]="'category' + i"
+              formControlName="category"
+            />
+          </div>
+          <div>
+            <label [for]="'value' + i">Wartość</label>
+            <input type="text" [id]="'value' + i" formControlName="value" />
+          </div>
+          <div>
+            <button type="button" (click)="removeContactLineFormGroup(i)">
+              Usuń
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div>
+      <button type="submit">Zatwierdź</button>
+    </div>
+  </form>
+</div>
 
-<ul>
-  <li *ngFor="let contact of contacts">
-    <p>{{ contact.contactTitle }}</p>
-    <ul>
-      <li *ngFor="let line of contact.contactLines">
-        <span><img [src]="getContactIconSource(line.icon)" width="50px"/> {{ line.category }} {{ line.value }}</span>
-      </li>
-    </ul>
-  </li>
-</ul>
+<ng-container *ngIf="contacts$ | async as contacts; else loading">
+  <ul>
+    <li *ngFor="let contact of contacts">
+      <p>{{ contact.contactTitle }}</p>
+      <ul>
+        <li *ngFor="let line of contact.contactLines">
+          <span
+            ><img [src]="getContactIconSource(line.icon)" width="50px" />
+            {{ line.category }} {{ line.value }}</span
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

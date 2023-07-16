@@ -1,38 +1,84 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { GetContactIconService } from '../services/get-contact-icon.service';
+import { Component, OnInit } from '@angular/core';
+import { contact } from './models/contact';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactDbService } from './services/contact-db.service';
+import { ContactProcessingService } from './services/contact-processing.service';
+import { contactIconTypes } from './data/contact-icon-types';
+import { Observable } from 'rxjs';
+import { ContactValidatorService } from './validators/contact-validator.service';
 
 @Component({
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
 })
-export class ContactComponent {
-  public contacts: contact[] = [];
+export class ContactComponent implements OnInit {
+  public contacts$!: Observable<contact[]>;
+  public contactForm!: FormGroup;
+  public contactIconTypes!: { value: string }[];
 
-  httpGetRequest() {
-    this.http.get<contact[]>(this.baseUrl + 'api/contact').subscribe({
-      next: (result) => {
-        this.contacts = result;
-      },
-      error: (err) => {
-        console.error(err);
-      }
+  constructor(
+    private contactProcessingService: ContactProcessingService,
+    private fb: FormBuilder,
+    private contactDbService: ContactDbService,
+    private contactValidator: ContactValidatorService
+  ) {
+    this.contactForm = fb.group({
+      contactTitle: ['', Validators.required],
+      contactLines: fb.array([]),
     });
   }
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-    private sanitizer: DomSanitizer, private contactService: GetContactIconService) {
-    this.httpGetRequest();
+  ngOnInit(): void {
+    this.contactIconTypes = contactIconTypes;
+    this.contacts$ = this.contactDbService.getContacts();
   }
+
+  ///<forms functions>
+  async saveContactForm(): Promise<void> {
+    if (!this.contactForm.valid) {
+      alert('Invalid form!');
+      return;
+    }
+    await this.contactDbService
+      .addContact(
+        this.contactProcessingService.buildContactData(this.contactForm)
+      )
+      .subscribe({
+        next: () => {
+          this.contacts$ = this.contactDbService.getContacts();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  get contactLinesForms(): FormArray {
+    return this.contactForm.get('contactLines') as FormArray;
+  }
+
+  addContactLineFormGroup(): void {
+    this.contactLinesForms.push(
+      this.fb.group({
+        icon: [
+          '(click here)',
+          Validators.compose([
+            this.contactValidator.iconValidator(),
+            Validators.required,
+          ]),
+        ],
+        category: [''],
+        value: [''],
+      })
+    );
+  }
+
+  removeContactLineFormGroup(index: number): void {
+    this.contactLinesForms.removeAt(index);
+  }
+  ///</forms functions>
 
   getContactIconSource(icon: string) {
-    return this.contactService.getContactIconSource(icon);
+    return 'assets/contact-images/' + icon + '.png';
   }
 }
-
-interface contact {
-  contactTitle: string;
-  contactLines: { category: string, value: string, icon: string }[];
-}
-
