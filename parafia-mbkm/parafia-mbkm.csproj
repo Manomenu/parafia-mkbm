@@ -45,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\contact\models\" />
     <Folder Include="ClientApp\src\app\services\" />
   </ItemGroup>
 
