@@ -1,6 +1,6 @@
 ﻿using parafia_mbkm.data.Models;
 using parafia_mbkm.data;
-using parafia_mbkm.ModelViews;
+using parafia_mbkm.Models;
 using parafia_mbkm.Services.IServices;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,32 +15,53 @@ namespace parafia_mbkm.Services
             _dbContext = dbContext;
         }
 
-        public async Task<int> AddContactAsync(ContactView contactModel)
+        public async Task<int> AddContactAsync(ContactModel contactModel)
         {
-            Contact contact = new Contact
+            try
             {
-                ContactTitle = contactModel.ContactTitle,
-                ContactLines = contactModel.ContactLines.Select(cl => new ContactLine
+                Contact contact = new Contact
                 {
-                    Category = cl.Category, 
-                    Value = cl.Value,
-                    Icon = cl.Icon,
-                }).ToList()
-            };
-            await _dbContext.Contacts.AddAsync(contact);
-            await _dbContext.SaveChangesAsync();
+                    ContactTitle = contactModel.ContactTitle,
+                    ContactLines = contactModel.ContactLines.Select(cl => new ContactLine
+                    {
+                        Category = cl.Category,
+                        Value = cl.Value,
+                        Icon = cl.Icon,
+                    }).ToList()
+                };
+                await _dbContext.Contacts.AddAsync(contact);
+                await _dbContext.SaveChangesAsync();
 
-            return contact.Id;
+                return contact.Id;
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
         public async Task<Contact?> GetContactByIdAsync(int id)
         {
-            return await _dbContext.Contacts.FindAsync(id);
+            try
+            {
+                return await _dbContext.Contacts.FindAsync(id);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public async Task<IEnumerable<Contact>> GetAllContactsAsync()
+        public async Task<IEnumerable<Contact>?> GetAllContactsAsync()
         {
-            return await _dbContext.Contacts.Include(c => c.ContactLines).ToArrayAsync();
+            try
+            {
+                return await _dbContext.Contacts.Include(c => c.ContactLines).ToArrayAsync();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

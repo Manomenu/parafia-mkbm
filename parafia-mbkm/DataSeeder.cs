@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using parafia_mbkm.data;
+﻿using parafia_mbkm.data;
 using parafia_mbkm.data.Models;
 
 namespace parafia_mbkm

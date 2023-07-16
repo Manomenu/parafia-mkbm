@@ -1,10 +1,12 @@
+using FakeItEasy;
+using parafia_mbkm.Services.IServices;
+
 namespace parafia_mbkm.test.Services
 {
-    public class ContactControllerTests
+    public class ContactServiceTests
     {
-        public ContactControllerTests()
+        public ContactServiceTests()
         {
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using parafia_mbkm.data.Models;
-using parafia_mbkm.ModelViews;
+using parafia_mbkm.Models;
 using parafia_mbkm.Services.IServices;
 
 namespace parafia_mbkm.Controllers
@@ -17,9 +17,12 @@ namespace parafia_mbkm.Controllers
 
         // GET: api/[controller]
         [HttpGet]
-        public async Task<IEnumerable<Contact>> GetAllContacts()
+        public async Task<IActionResult> GetAllContacts()
         {
-            return await contactService.GetAllContactsAsync();
+            IEnumerable<Contact>? contacts = await contactService.GetAllContactsAsync();
+            if (contacts == null)
+                return NotFound();
+            return Ok(contacts);
         }
 
         //GET api/[controller]/5
@@ -34,9 +37,11 @@ namespace parafia_mbkm.Controllers
 
         // POST: api/[controller]
         [HttpPost]
-        public async Task<IActionResult> AddContact([FromBody] ContactView contact)
+        public async Task<IActionResult> AddContact([FromBody] ContactModel contact)
         {
             int contactId = await contactService.AddContactAsync(contact);
+            if (contactId == -1)
+                return BadRequest();
             return CreatedAtAction(nameof(GetContactById), "contact", new
             {
                 Id = contactId,

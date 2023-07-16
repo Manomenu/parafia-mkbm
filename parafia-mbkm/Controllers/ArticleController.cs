@@ -2,7 +2,7 @@
 using parafia_mbkm.data;
 using parafia_mbkm.data.Models;
 using parafia_mbkm.Services;
-using parafia_mbkm.ModelViews;
+using parafia_mbkm.Models;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

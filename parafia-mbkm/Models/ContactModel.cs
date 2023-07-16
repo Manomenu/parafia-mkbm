@@ -1,16 +1,15 @@
-﻿using parafia_mbkm.data.Models;
-
-namespace parafia_mbkm.ModelViews
+﻿
+namespace parafia_mbkm.Models
 {
-    public class ContactView
+    public class ContactModel
     {
-        public class ContactLineView
+        public class ContactLineModel
         {
             public string Category { get; set; }
             public string Value { get; set; }
             public string Icon { get; set; }
 
-            public ContactLineView() 
+            public ContactLineModel() 
             {
                 Category = "";
                 Value = "";
@@ -19,10 +18,10 @@ namespace parafia_mbkm.ModelViews
         }
 
         public string ContactTitle { get; set; }
-        public List<ContactLineView> ContactLines { get; set; }
-        public ContactView()
+        public List<ContactLineModel> ContactLines { get; set; }
+        public ContactModel()
         {
-            ContactLines = new List<ContactLineView>();
+            ContactLines = new List<ContactLineModel>();
             ContactTitle = "";
         }
     }
