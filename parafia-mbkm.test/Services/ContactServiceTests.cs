@@ -7,6 +7,8 @@ namespace parafia_mbkm.test.Services
     {
         public ContactServiceTests()
         {
+            // do not write those tests yet, ContactService Requires exception refactoring
+            // https://www.youtube.com/watch?v=YbuSuSpzee4
         }
     }
 }

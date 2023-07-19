@@ -4,6 +4,8 @@ using parafia_mbkm.Models;
 using parafia_mbkm.Services.IServices;
 using Microsoft.EntityFrameworkCore;
 
+// Requires exception refactoring
+// https://www.youtube.com/watch?v=YbuSuSpzee4
 namespace parafia_mbkm.Services
 {
     public class ContactService : IContactService

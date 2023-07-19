@@ -81,4 +81,8 @@ export class ContactComponent implements OnInit {
   getContactIconSource(icon: string) {
     return 'assets/contact-images/' + icon + '.png';
   }
+
+  removeContact(contactId: number): void {
+    //todo maybe change type to api return result?
+  }
 }
