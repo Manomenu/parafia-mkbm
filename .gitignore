@@ -43,5 +43,6 @@ Thumbs.db
 */.angular
 .vs
 
-bin/Debug/net7.0
-obj/Debug/net7.0
+*/Debug/net7.0
+*/Debug/net7.0
+/parafia-mbkm.test/obj
