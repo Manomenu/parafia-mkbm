@@ -45,4 +45,5 @@ Thumbs.db
 
 */Debug/net7.0
 */Debug/net7.0
-/parafia-mbkm.test/obj
+*/obj
+/parafia-mbkm.test/bin/Debug/net7.0
