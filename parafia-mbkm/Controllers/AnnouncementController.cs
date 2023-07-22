@@ -47,7 +47,8 @@ namespace parafia_mbkm.Controllers
             {
                 Title = announcement.Title,
                 Date = announcement.Date,
-                Content = announcement.Content
+                Content = announcement.Content,
+                MainImage = announcement.MainImage
             });
         }
 

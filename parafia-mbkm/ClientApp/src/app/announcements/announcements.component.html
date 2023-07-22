@@ -1,3 +1,23 @@
+<div>
+    <form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncementForm()">
+        <div>
+            <label for="announcementTitle">Tytuł</label>
+            <input type="text" id="anouncementTitle" formControlName="announcementTitle" />
+        </div>
+        <div>
+            <label for="announcementDate">Data</label>
+            <input type="text" id="anouncementDate" formControlName="announcementDate" />
+        </div>
+        <div>
+            <label for="announcementContent">Treść ogłoszenia</label>
+            <input type="text" id="anouncementContent" formControlName="announcementContent" />
+        </div>
+        <div>
+            <button type="submit">Zatwierdź</button>
+        </div>
+    </form>
+</div>
+
 <p *ngIf="!announcements?.length"><em>Loading...</em></p>
 
 <!-- sprawdzdic stan buttonow z listy czy klikniety -->
