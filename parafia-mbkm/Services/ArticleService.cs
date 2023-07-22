@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using parafia_mbkm.ModelViews;
+﻿using parafia_mbkm.Models;
 using parafia_mbkm.data.Models;
 using parafia_mbkm.data;
 
