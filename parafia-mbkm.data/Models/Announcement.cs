@@ -17,8 +17,6 @@ namespace parafia_mbkm.data.Models
         public DateOnly Date { get; set; }
         [Required]
         public string Content { get; set; }
-        [Required]
-        public string MainImage { get; set; }
 
         public Announcement()
         {

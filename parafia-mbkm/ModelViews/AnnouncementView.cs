@@ -7,7 +7,6 @@ namespace parafia_mbkm.ModelViews
         public string Title { get; set; }
         public DateOnly Date { get; set; }
         public string Content { get; set; }
-        public string MainImage { get; set; }
 
         public AnnouncementView()
         {

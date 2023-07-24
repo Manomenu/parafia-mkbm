@@ -12,8 +12,7 @@ namespace parafia_mbkm.Services
             {
                 Title = announcementModel.Title,
                 Date = announcementModel.Date,
-                Content = announcementModel.Content,
-                MainImage = announcementModel.MainImage
+                Content = announcementModel.Content
             };
             await context.Announcements.AddAsync(announcement);
             await context.SaveChangesAsync();
