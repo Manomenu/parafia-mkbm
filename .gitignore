@@ -42,3 +42,8 @@ Thumbs.db
 .angular
 */.angular
 .vs
+
+*/obj/*
+*/obj
+/parafia-mbkm.data/bin/Debug/net7.0/parafia-mbkm.data.dll
+/parafia-mbkm/ClientApp/src/app/announcements/services/announcement-db.service.ts

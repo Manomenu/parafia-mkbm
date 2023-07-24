@@ -1,11 +1,16 @@
-<p *ngIf="!announcements?.length"><em>Loading...</em></p>
+<ng-container *ngIf="announcements$ | async as announcements; else loading">
 
-<!-- sprawdzdic stan buttonow z listy czy klikniety -->
-<div class="announcements">
-    <button *ngFor="let announcement of announcements" (click)="onClick(announcement.title, announcement.date, announcement.id)">
-        <div class="title">
-            <p>{{ announcement.title }}</p>
-            <p>{{ announcement.date }}</p>
-        </div>
-    </button>
-</div>
+    <!-- sprawdzdic stan buttonow z listy czy klikniety -->
+    <div class="announcements">
+        <button *ngFor="let announcement of announcements" (click)="onClick(announcement.title, announcement.date, announcement.id)">
+            <div class="title">
+                <p>{{ announcement.title }}</p>
+                <p>{{ announcement.date }}</p>
+            </div>
+        </button>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <p>Loading...</p>
+</ng-template>
