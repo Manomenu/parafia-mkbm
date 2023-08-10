@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using parafia_mbkm.data.Models;
-using parafia_mbkm.Models;
+using parafia_mbkm.View;
 using parafia_mbkm.Services.IServices;
 
 namespace parafia_mbkm.Controllers
@@ -36,7 +37,7 @@ namespace parafia_mbkm.Controllers
         }
 
         // POST: api/[controller]
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<IActionResult> AddContact([FromBody] ContactModel contact)
         {
             int contactId = await contactService.AddContactAsync(contact);

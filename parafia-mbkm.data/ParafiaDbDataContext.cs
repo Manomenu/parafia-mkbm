@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using parafia_mbkm.data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace parafia_mbkm.data
 {
-    public class ParafiaDbDataContext : DbContext
+    public class ParafiaDbDataContext : IdentityUserContext<IdentityUser>
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -22,7 +19,7 @@ namespace parafia_mbkm.data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseSerialColumns();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

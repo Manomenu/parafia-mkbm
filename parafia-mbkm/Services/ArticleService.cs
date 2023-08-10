@@ -1,4 +1,4 @@
-﻿using parafia_mbkm.Models;
+﻿using parafia_mbkm.View;
 using parafia_mbkm.data.Models;
 using parafia_mbkm.data;
 

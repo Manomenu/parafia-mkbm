@@ -1,6 +1,6 @@
 ﻿using parafia_mbkm.data.Models;
 using parafia_mbkm.data;
-using parafia_mbkm.Models;
+using parafia_mbkm.View;
 
 namespace parafia_mbkm.Services.IServices
 {

@@ -47,3 +47,4 @@ obj/
 bin/
 Migrations/
 .vs/
+CompiledModels/

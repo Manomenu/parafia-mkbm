@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using parafia_mbkm;
@@ -27,7 +28,8 @@ builder.Services.AddAuthentication(o =>
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero
     };
 });
 builder.Services.AddAuthorization();
@@ -37,6 +39,17 @@ builder.Services.AddDbContext<ParafiaDbDataContext>(
     b => b.MigrationsAssembly("parafia-mbkm.data"))
     );
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddIdentityCore<IdentityUser>(o =>
+{
+    o.SignIn.RequireConfirmedAccount = false;
+    o.User.RequireUniqueEmail = true;
+    o.Password.RequireDigit = false;
+    o.Password.RequiredLength = 6;
+    o.Password.RequireNonAlphanumeric = false;
+    o.Password.RequireUppercase = false;
+    o.Password.RequireLowercase = false;
+}).AddEntityFrameworkStores<ParafiaDbDataContext>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 
